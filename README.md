@@ -11,6 +11,7 @@ Thanks for stopping by!
 SMALL ROADMAP:
 - [ ] Update GUI background with new logo.
 - [ ] Gut out old namp scanning code, replace with new fancier nmap python code. (from APON)
-- [ ] Output findings to HTML report (maybe?).
 - [ ] Begin implimenting enumeration techniques. (from APON)
+- [ ] Output findings to HTML report (maybe?).
+
 
