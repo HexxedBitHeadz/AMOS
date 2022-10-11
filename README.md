@@ -7,3 +7,10 @@ Nothing is here because I need to spend some time gutting out the old code, and 
 
 
 Thanks for stopping by!
+
+SMALL ROADMAP:
+- [ ] Update GUI background with new logo.
+- [ ] Gut out old namp scanning code, replace with new fancier nmap python code. (from APON)
+- [ ] Output findings to HTML report (maybe?).
+- [ ] Begin implimenting enumeration techniques. (from APON)
+
