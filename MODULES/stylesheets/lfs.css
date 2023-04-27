@@ -1,0 +1,106 @@
+/* Global settings */
+body {
+  font-family: verdana, tahoma, helvetica, arial, sans-serif;
+  text-align: left;
+  background: #fff;
+  color: #222;
+  margin: 1em;
+  padding: 0;
+  font-size: 1em;
+  line-height: 1.2em
+}
+
+
+/* Links */
+a:link { color: #22b; }
+a.ulink:link { font-weight: bold; color: #55f; }
+a:visited { color: #7e4988 ! important; }
+a:hover, a:focus { color: #d30e08 ! important; }
+a:active { color: #6b77b1 ! important;}
+
+
+/* report titlepage */
+.report .titlepage {
+  background: #f5f6f7;
+  margin: 0px auto;
+  padding: 0 1em;
+}
+
+.report hr {
+  background: #dbddec;
+  height: .3em;
+  border: 0px;
+  margin: 0 -1em;
+  padding: 0;
+}
+
+div.dedication {
+  padding-left: 1em;
+}
+
+
+/* Sections */
+div.sect1, div.appendix {
+  padding-left: .3em;
+}
+
+
+/* Headers */
+h1, h2, h3, h4, h5, h6, b, .strong {
+  color: #000;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+h1 {
+  font-size: 173%;
+  text-align: center;
+}
+
+.report h1 {
+  margin: 0;
+  padding: 0.4em;
+}
+
+.preface h1, .part h1, .chapter h1, .appendix h1, .index h1, .sect1 h1, .glossary h1 {
+  background: #f5f6f7;
+  border-bottom: .1em solid #dbddec;
+  margin-bottom: 1em;
+  margin-top: 0;
+  padding: .4em;
+}
+
+.sect1 h1, .appendix h1 {
+  margin-left: -.2em;
+}
+
+.wrap h1 {
+  background: #f5f6f7;
+  margin: 0;
+  padding: .4em;
+}
+
+h1.title sup {
+  font-size: small;
+}
+
+h2 {
+  font-size: 144%;
+}
+
+.report h2.subtitle {
+  text-align: center;
+  background: #2b2b2b;
+  margin: 0;
+  padding: 0.2em;
+}
+
+
+h3 {
+  font-size: 120%;
+}
+
+h4 {
+  font-size: 110%;
+}
+
