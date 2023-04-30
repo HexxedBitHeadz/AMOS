@@ -17,8 +17,10 @@ function runYUMScript () {
 	sudo yum install -y python3-pip build-essential libssl-dev libffi-dev python3-dev python3-virtualenv python3-tk nmap
 }
 
-if [[ "$catDistro" == *"fedora"* ]]; then
-  runDNFScript
+# Leaving OS's here for further testing.
+
+#if [[ "$catDistro" == *"fedora"* ]]; then
+#  runDNFScript
 
 elif [[ "$catDistro" == *"kali"* ]]; then
   runAPTScript
