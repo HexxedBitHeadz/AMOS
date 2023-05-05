@@ -13,9 +13,19 @@ def bruteforce(self, port, service):
     # Here in this tab, we will test and display findings for: 1. Anonymous access 2. nmap credfile.txt attack.
     var = tk.IntVar()
 
+    # Destroying and recreating bottom window as this was the only solution I could find to clearing the checkboxes in the bottom window with new scan without restarint app
+    self.scrollWindowBruteBottom.destroy()
+    self.scrollWindowBruteBottom = MODULES.functions.windowMaker(frameName=self.frameBrute)
+    self.scrollWindowBruteBottom.place(anchor="nw", height=150, width=325, x=525, y=380)
+
+
     # Creating checkboxes
     checkboxes = MODULES.functions.checkBoxMaker(frameName=self.scrollWindowBruteBottom, text=str(port) + " - " + str(service))
     checkboxes.configure(variable=var, command=lambda:myCallback(self, var, port, service))
+
+
+    #self.scrollWindowBruteBottom.window_create("1.0", window="")
+
 
     # Adding checkboxes to bottom window
     self.scrollWindowBruteBottom.window_create("end", window=checkboxes)
