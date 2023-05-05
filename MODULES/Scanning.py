@@ -10,12 +10,19 @@ nm = PortScanner()
 
 def preScan(self):
 
+
     # Clearing out top and bottom window in case user clicks scan agin after enumeration.  This deletes the service buttons and re-disables the brute tab.
     try:
-
+        # Clear scanning tab windows
         MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText=" ")
         MODULES.functions.bottomWindowDelete(window=self.scrollWindowScannerBottom)
         
+        
+        # Clear brute tab top window
+        MODULES.functions.topWindowUpdate(window=self.scrollWindowbruteTop, updateText=" ")
+     
+        # Disabling the Brute tab until valid results are found from scanning
+        self.notebookAmos.tab(self.frameBrute, state="disabled")
     except:
         pass
 
