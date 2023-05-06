@@ -7,7 +7,7 @@ Amos will not find and auto exploit any machine for you.  It is more of an enume
 
 Due to use of match case scripting, only >= python 3.10 is supported.
 
-## First time intallation
+## First time installation
 ```
 git clone https://github.com/HexxedBitHeadz/AMOS && cd AMOS
 ```
