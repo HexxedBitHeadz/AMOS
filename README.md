@@ -29,5 +29,5 @@ source ./bin/activate
 ```
 
 ```
-sudo amos.py
+sudo python3 amos.py
 ```
