@@ -8,17 +8,26 @@ Amos will not find and auto exploit any machine for you.  It is more of an enume
 Due to use of match case scripting, only >= python 3.10 is supported.
 
 ## First time intallation
-INSERT GIT CLONE COMMAND HERE
+```
+git clone https://github.com/HexxedBitHeadz/AMOS
+```
 
+```
 source ./install.sh
+```
 
+```
 sudo python3 amos.py
+```
 
 ## Running from virtual environment
+Amos is ready for virutal deployment, simply acivate as you would any other venv:
 
 From the Amos folder:
-
+```
 source ./bin/activate
+```
 
+```
 sudo amos.py
-
+```
