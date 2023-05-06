@@ -9,7 +9,7 @@ Due to use of match case scripting, only >= python 3.10 is supported.
 
 ## First time intallation
 ```
-git clone https://github.com/HexxedBitHeadz/AMOS
+git clone https://github.com/HexxedBitHeadz/AMOS && cd AMOS
 ```
 
 ```
