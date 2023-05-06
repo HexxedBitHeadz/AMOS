@@ -22,7 +22,7 @@ function runYUMScript () {
 #if [[ "$catDistro" == *"fedora"* ]]; then
 #  runDNFScript
 
-elif [[ "$catDistro" == *"kali"* ]]; then
+if [[ "$catDistro" == *"kali"* ]]; then
   runAPTScript
 
 elif [[ "$catDistro" == *"parrot"* ]]; then
