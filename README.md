@@ -29,3 +29,16 @@ source ./bin/activate
 ```
 sudo python3 amos.py
 ```
+
+## Roadmap
+- Continue to improve code form "proof of concept" to better written format.
+- Expand Reverse Shell tab
+- Expand Privelege Escalation tab
+
+
+## Donate
+In the US?  Donate $30 or more and recieve a Hexxed BitHeadz tee!  All tee are 100% polyester and done by sublimation.  
+
+
+
+
