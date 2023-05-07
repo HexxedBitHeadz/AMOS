@@ -2,7 +2,8 @@
 import tkinter as tk
 from tkinter import *
 import threading, subprocess
-import MODULES.functions
+import MODULES.functions, os
+from tkinter.filedialog import askdirectory
 
 def threadingSetup(self):
     # Setting up thread for tools function
@@ -31,7 +32,7 @@ def tools(self):
     # Buttons
     # HTTP start and stop buttons
     HTTPStartButton = MODULES.functions.buttonMaker(frameName=self.frameTools, text="Start")
-    HTTPStartButton.config(width=1, command=lambda:enableService(HTTPStartButton, HTTPStopButton, toolsWindow, service="HTTP"))
+    HTTPStartButton.config(width=1, command=lambda:enableService(self, HTTPStartButton, HTTPStopButton, toolsWindow, service="HTTP"))
     HTTPStartButton.place(anchor="nw", x=520, y=50)
 
     HTTPStopButton = MODULES.functions.buttonMaker(frameName=self.frameTools, text="Stop")
@@ -41,7 +42,7 @@ def tools(self):
 
     # Mail start and stop buttons
     MailStartButton = MODULES.functions.buttonMaker(frameName=self.frameTools, text="Start")
-    MailStartButton.config(width=1, command=lambda:enableService(MailStartButton, MailStopButton, toolsWindow, service="Mail"))
+    MailStartButton.config(width=1, command=lambda:enableService(self, MailStartButton, MailStopButton, toolsWindow, service="Mail"))
     MailStartButton.place(anchor="nw", x=720, y=50)
 
     MailStopButton = MODULES.functions.buttonMaker(frameName=self.frameTools, text="Stop")
@@ -51,7 +52,7 @@ def tools(self):
 
     # FTP start and stop buttons
     FTPStartButton = MODULES.functions.buttonMaker(frameName=self.frameTools, text="Start")
-    FTPStartButton.config(width=1, command=lambda:enableService(FTPStartButton, FTPStopButton, toolsWindow, service="FTP"))
+    FTPStartButton.config(width=1, command=lambda:enableService(self, FTPStartButton, FTPStopButton, toolsWindow, service="FTP"))
     FTPStartButton.place(anchor="nw", x=520, y=150)
 
     FTPStopButton = MODULES.functions.buttonMaker(frameName=self.frameTools, text="Stop")    
@@ -59,14 +60,19 @@ def tools(self):
     FTPStopButton.config(state="disabled")
     FTPStopButton.place(anchor="nw", x=570, y=150)
 
-
-
-def enableService(startButton, stopButton, toolsWindow, service):
+def enableService(self, startButton, stopButton, toolsWindow, service):
     # Matching service name user selection, kicking off desired service
     match service:
         case "HTTP":
             startButton.config(state="disabled")
             stopButton.config(state="normal")
+            try:
+                MODULES.functions.statusUpdate(self, statusText="Selecting server directory...")
+                foldername = askdirectory()
+                os.chdir(foldername + "/")
+            except TypeError:
+                pass             
+
             bashCommand = "sudo python3 -m http.server 80"
             threading.Thread(target=subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE), args=(), daemon=True)
             MODULES.functions.bottomWindowUpdate(window=toolsWindow, updateText="HTTP server started. \n")
@@ -81,11 +87,17 @@ def enableService(startButton, stopButton, toolsWindow, service):
         case "FTP":
             startButton.config(state="disabled")
             stopButton.config(state="normal")
+
+            try:
+                MODULES.functions.statusUpdate(self, statusText="Selecting server directory...")
+                foldername = askdirectory()
+                os.chdir(foldername + "/")
+            except TypeError:
+                pass   
+
             bashCommand = "sudo python3 -m pyftpdlib -p 21 --write"
             threading.Thread(target=subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE), args=(), daemon=True) 
             MODULES.functions.bottomWindowUpdate(window=toolsWindow, updateText="FTP server started. \n")
-
-
 
 def disableService(startButton, stopButton, toolsWindow, service):
     
