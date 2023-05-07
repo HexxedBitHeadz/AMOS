@@ -240,7 +240,7 @@ def donate(self):
     donateButton.place(x=10, y=275)
 
     # Donate summary 
-    donateSummary = MODULES.functions.labelMaker(frameName=donationWindow, text="Your donation contributes to the research and development projects from Hexxed BitHeadz.  \n\nWith this, we keep our coffee cups full, the monitors running, and the developoment going!\n\nThank you for checking out Amos, our introductory contribution to Cyber.")
+    donateSummary = MODULES.functions.labelMaker(frameName=donationWindow, text="Your donation contributes to the research and development projects from Hexxed BitHeadz.  \n\nWith this, we keep our coffee cups full, the monitors running, and the developoment going!\n\nThank you for checking out Amos, our introductory contribution to Cyber.\n\nIn the US?  Donate $30 or more and receive a Hexxed BitHeadz tee!")
     donateSummary.place(x=275, y=10)
     donateSummary.configure(wraplength=220, justify="left")
 
