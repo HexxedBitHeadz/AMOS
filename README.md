@@ -37,8 +37,9 @@ sudo python3 amos.py
 
 
 ## Donate
-In the US?  Donate $30 or more and recieve a Hexxed BitHeadz tee!  All tee are 100% polyester and done by sublimation.  
+In the US?  Donate $30 or more and recieve a Hexxed BitHeadz tee!  All tee are 100% polyester and done by sublimation.
 
+![PayPal](https://github.com/HexxedBitHeadz/AMOS/blob/main/IMAGES/QRCode.png)
 
-
+[PayPal link](https://www.paypal.com/donate/?business=5MX6P8YU3CNBY&no_recurring=0&item_name=This+donation+goes+to+furthering+cyber+research+and+tools+provided+by+Hexxed+BitHeadz.&currency_code=USD)
 
