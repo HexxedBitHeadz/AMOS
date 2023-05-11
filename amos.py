@@ -224,13 +224,26 @@ def donate(self):
 
     # Runs the donate window code
     donationWindow = MODULES.functions.popOutWindow(frameName=None, text="Donations")
-    donationWindow.geometry("500x400")
+    donationWindow.geometry("500x600")
     
     # QR code image
-    img_QRCode= tk.PhotoImage(file=self.amosDir + "/IMAGES/QRCode.png")
+    img_QRCode = tk.PhotoImage(file=self.amosDir + "/IMAGES/QRCode.png")
     panel = Label(donationWindow, image=img_QRCode)
     panel.photo = img_QRCode
     panel.place(x=10, y=10)
+
+
+    # tee 1 image
+    tee_1 = tk.PhotoImage(file=self.amosDir + "/IMAGES/tee_1.png")
+    panel = Label(donationWindow, image=tee_1)
+    panel.photo = tee_1
+    panel.place(x=20, y=375)
+
+    # # tee 2 image
+    tee_2 = tk.PhotoImage(file=self.amosDir + "/IMAGES/tee_2.png")
+    panel = Label(donationWindow, image=tee_2)
+    panel.photo = tee_2
+    panel.place(x=275, y=375)
 
     # Payplay donate link and button
     donateLink = '''https://www.paypal.com/donate/?business=5MX6P8YU3CNBY&no_recurring=0&item_name=This+donation+goes+to+furthering+cyber+research+and+tools+provided+by+Hexxed+BitHeadz.&currency_code=USD'''
@@ -240,7 +253,7 @@ def donate(self):
     donateButton.place(x=10, y=275)
 
     # Donate summary 
-    donateSummary = MODULES.functions.labelMaker(frameName=donationWindow, text="Your donation contributes to the research and development projects from Hexxed BitHeadz.  \n\nWith this, we keep our coffee cups full, the monitors running, and the developoment going!\n\nThank you for checking out Amos, our introductory contribution to Cyber.\n\nIn the US?  Donate $30 or more and receive a Hexxed BitHeadz tee!")
+    donateSummary = MODULES.functions.labelMaker(frameName=donationWindow, text="Your donation contributes to the research and development projects from Hexxed BitHeadz.  \n\nWith this, we keep our coffee cups full, the monitors running, and the developoment going!\n\nThank you for checking out Amos, our introductory contribution to Cyber.\n\nIn the US?  Donate $30 or more and receive a Hexxed BitHeadz tee!  We'll contact you after payment to discuss request size and name to be printed.")
     donateSummary.place(x=275, y=10)
     donateSummary.configure(wraplength=220, justify="left")
 
