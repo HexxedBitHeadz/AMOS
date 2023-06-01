@@ -12,7 +12,8 @@ def threadingSetup(self):
 
 def tools(self):
 
-    # #Placing window
+    # #Placing window usign frameTools from amos.py
+    
     toolsWindow = MODULES.functions.windowMaker(frameName=self.frameTools)
     toolsWindow.place(anchor="nw", height=150, width=325, x=525, y=380)
 

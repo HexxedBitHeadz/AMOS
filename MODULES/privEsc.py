@@ -14,7 +14,7 @@ def privEsc(self):
 
     # Placing window
     privEscWindow = MODULES.functions.windowMaker(frameName=self.framePrivEsc)
-    privEscWindow.place(anchor="nw", height=295, width=410, x=475, y=300)
+    privEscWindow.place(anchor="nw", height=260, width=325, x=525, y=300)
 
     # Placing labels
     labelTargetType = tk.Label(self.framePrivEsc, text="OS", background="black", foreground="#64d86b")
@@ -144,5 +144,5 @@ def privEsc(self):
     def gtc(dtxt):
         # Function that copies text to clipbord
         MODULES.functions.statusUpdate(self, statusText="Text copied to clipboard")
-        self.topLevelAmos.clipboard_clear()
-        self.topLevelAmos.clipboard_append(dtxt)    
+        self.framePrivEsc.clipboard_clear()
+        self.framePrivEsc.clipboard_append(dtxt)   

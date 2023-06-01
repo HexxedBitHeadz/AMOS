@@ -9,8 +9,8 @@ import MODULES.Enumeration, MODULES.write2report, MODULES.functions
 
 
 def frameMaker(self, text):
-    # Code to genreate frames
-    frameName = Frame(self.notebookAmos, width=900, height=600, bg="black")
+    # Code to genreate frames    
+    frameName = Frame(self.notebookAmos, bg="black")
     self.notebookAmos.add(frameName, text=text)
     return frameName
 
@@ -38,10 +38,10 @@ def buttonMaker(frameName, text):
     buttonName.configure(bg="#008f11", relief="flat", width=20, default="normal", text=text)
     return buttonName
 
-def progressBarMaker(self):
+def progressBarMaker(self, frameName):
     # Code to genreate progress bars
-    progressBarName = ttk.Progressbar(self.topLevelAmos)
-    progressBarName.configure(orient="horizontal", mode='indeterminate', length=100)
+    progressBarName  = ttk.Progressbar(frameName, orient="horizontal", length=100, mode="indeterminate")
+    progressBarName .place(anchor="nw", x=20, y=560)
     return progressBarName
 
 def checkBoxMaker(frameName, text):
@@ -67,6 +67,8 @@ def documentsFolderPathCheck(self):
     # Getting the user path, checking for the Documents folder existance.  If it does not exist, create it
     DocumentsFolder = ("/home/" + self.userName + "/Documents/")
 
+
+
     # Checking if path already exists
     str(os.path.exists(DocumentsFolder))
 
@@ -76,12 +78,16 @@ def documentsFolderPathCheck(self):
     os.chdir(DocumentsFolder)
 
     # Checking for the Documents/TargetName folder.  If it does not exist, create it
-    str(os.path.exists(self.entryTargetName.get()))
+    str(os.path.exists(self.targetName))
     
-    if not os.path.exists(self.entryTargetName.get()):
-        os.mkdir(self.entryTargetName.get())
-        os.chown(self.entryTargetName.get(), self.uid, self.gid)
-    os.chdir(self.entryTargetName.get())
+    if not os.path.exists(self.targetName):
+        os.mkdir(self.targetName)
+        os.chown(self.targetName, self.uid, self.gid)
+    else:
+        pass
+    os.chdir(self.targetName)
+
+
 
 
 def statusUpdate(self, statusText):
@@ -93,7 +99,7 @@ def statusUpdate(self, statusText):
 
     #Updating status label (BOTTOM LEFT UNDER PROGRESS BAR)
     self.statusLabel = tk.Label(text=statusText, background="black", foreground="#64d86b")
-    self.statusLabel.place(anchor="nw", x=12, y=602)
+    self.statusLabel.place(anchor="nw", x=12, y=577)
 
 def topWindowUpdate(window, updateText):
     # Updating top window
@@ -126,17 +132,17 @@ def quickPortScan(self):
     nm = PortScanner()
 
     # nmap quick scan
-    self.quickPortScan = nm.scan(self.TargetIP, arguments='-sS -T4 -Pn')   ######################
+    self.quickPortScan = nm.scan(self.targetIP, arguments='-sS -T4 -Pn')   ######################
 
     # Finding open ports
-    quickOpenPortList = list(self.quickPortScan['scan'][self.TargetIP]['tcp'].keys())
+    quickOpenPortList = list(self.quickPortScan['scan'][self.targetIP]['tcp'].keys())
     
     # Prepping service variable for assignment
     quickOpenServiceList = []
 
     # Assigning quick list of open services to variable
     for n in range(len(quickOpenPortList)):        
-        quickOpenServiceList += list(self.quickPortScan['scan'][self.TargetIP]['tcp'][quickOpenPortList[n]]['name'].split())
+        quickOpenServiceList += list(self.quickPortScan['scan'][self.targetIP]['tcp'][quickOpenPortList[n]]['name'].split())
 
     # Writing quick open ports and service name results to Amos top screen
     n = len(quickOpenPortList)
@@ -158,10 +164,10 @@ def fullPortScan(self):
     self.fullOpenPortList = []
 
     # nmap full scanning for open ports
-    self.fullPortScan = nm.scan(self.TargetIP, arguments='--defeat-rst-ratelimit --max-rtt-timeout 900ms --initial-rtt-timeout 750ms --max-retries 3 -sS -T4 -Pn -p-') ##################
+    self.fullPortScan = nm.scan(self.targetIP, arguments='--defeat-rst-ratelimit --max-rtt-timeout 900ms --initial-rtt-timeout 750ms --max-retries 3 -sS -T4 -Pn -p-') ##################
 
     try:
-        self.fullOpenPortList = list(self.fullPortScan['scan'][self.TargetIP]['tcp'].keys())
+        self.fullOpenPortList = list(self.fullPortScan['scan'][self.targetIP]['tcp'].keys())
 
     # Error message in case scan goes wrong
     except KeyError:
@@ -173,7 +179,7 @@ def fullPortScan(self):
     # Assigning FULL list of open banners to variables tied to open ports
     try:
         for n in range(len(self.fullOpenPortList)):        
-            self.fullOpenServiceList += list(self.fullPortScan['scan'][self.TargetIP]['tcp'][self.fullOpenPortList[n]]['name'].split())
+            self.fullOpenServiceList += list(self.fullPortScan['scan'][self.targetIP]['tcp'][self.fullOpenPortList[n]]['name'].split())
 
     except AttributeError:
         pass
@@ -188,7 +194,7 @@ def serviceScan(self, fullOpenPortList):
     nm = PortScanner()
 
     # nmap scan of services (-A) scanning of ONLY the ports found in previous full scan
-    self.serviceScan = nm.scan(self.TargetIP, arguments='--max-rtt-timeout 900ms --initial-rtt-timeout 750ms --max-retries 5 --script-timeout 30s -sS -A -T4 -Pn -p' + fullOpenPortList)   ######################
+    self.serviceScan = nm.scan(self.targetIP, arguments='--max-rtt-timeout 900ms --initial-rtt-timeout 750ms --max-retries 5 --script-timeout 30s -sS -A -T4 -Pn -p' + fullOpenPortList)   ######################
 
     return self.serviceScan
 
@@ -197,7 +203,7 @@ def vulnersScan(self, fullOpenPortList):
     nm = PortScanner()
 
     # nmap vulners scan of ONLY the ports found in previous full scan
-    self.vulnersScan = nm.scan(self.TargetIP, arguments='-sV --script vulners -p ' + fullOpenPortList)   ######################  
+    self.vulnersScan = nm.scan(self.targetIP, arguments='-sV --script vulners -p ' + fullOpenPortList)   ######################  
 
     return self.vulnersScan
 

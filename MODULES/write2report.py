@@ -11,7 +11,7 @@ def header2html(self):
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
-        <title> ''' + self.entryTargetName.get() + ''' Target scan report</title>
+        <title> ''' + self.targetName + ''' Target scan report</title>
     
         <link rel="stylesheet" type="text/css" href="''' + str(self.amosDir) + '''/MODULES/stylesheets/lfs.css" />
     </head>
@@ -26,7 +26,7 @@ def header2html(self):
                             </h1>
                             <h2 class="subtitle">
                                 <img src="''' + HeBiLogo + '''" width="100" height="150"></img><br>
-                                <p style="color:white;">''' + self.entryTargetName.get() + ''' Target scan report</p>
+                                <p style="color:white;">''' + self.targetName + ''' Target scan report</p>
                             </h2>
                         </div>
                         <div class="toc">
@@ -53,7 +53,7 @@ def header2html(self):
         </body>
 
     '''
-    filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/report.html"
+    filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/report.html"
     with open(filename, "w") as file:
         file.write(html)
     file.close
@@ -101,7 +101,7 @@ def serviceScan2html(self, HTMLheader, element, show=1):
 
     if show == 1:
 
-        filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/report.html"
+        filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/report.html"
         with open(filename, "a") as file:
             file.write(html)
         file.close
@@ -149,7 +149,7 @@ def vulnScan2html(self, HTMLheader, element, show=1):
 
     if show == 1:
 
-        filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/report.html"
+        filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/report.html"
         with open(filename, "a") as file:
             file.write(html)
         file.close
@@ -186,7 +186,7 @@ def enum2html(self, HTMLheader, element, show=1):
 
     if show == 1:
 
-        filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/report.html"
+        filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/report.html"
         with open(filename, "a") as file:
             file.write(html)
         file.close
@@ -225,7 +225,7 @@ def auth2html(self, HTMLheader, element, show=1):
 
     if show == 1:
 
-        filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/report.html"
+        filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/report.html"
         with open(filename, "a") as file:
             file.write(html)
         file.close
@@ -243,7 +243,7 @@ def webExtract2html(self, HTMLheader, element, show=1):
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
-        <title> ''' + self.entryTargetName.get() + ''' extract report</title>
+        <title> ''' + self.targetName + ''' extract report</title>
     
         <link rel="stylesheet" type="text/css" href="''' + str(self.amosDir) + '''/MODULES/stylesheets/lfs.css" />
     </head>
@@ -258,7 +258,7 @@ def webExtract2html(self, HTMLheader, element, show=1):
                             </h1>
                             <h2 class="subtitle">
                                 <img src="''' + HeBiLogo + '''" width="100" height="150"></img><br>
-                                <p style="color:white;">''' + self.entryTargetName.get() + ":" + self.entryWebPort.get() + ''' extraction report</p>
+                                <p style="color:white;">''' + self.targetName + ":" + self.entryWebPort.get() + ''' extraction report</p>
                             </h2>
                         </div>
                     </div>
@@ -385,7 +385,7 @@ def webExtract2html(self, HTMLheader, element, show=1):
 
     if show == 1:
 
-        filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/HTML_report-Extraction-" + self.entryWebPort.get() + ".html"
+        filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/HTML_report-Extraction-" + self.entryWebPort.get() + ".html"
         with open(filename, "w") as file:
             file.write(html)
         file.close
@@ -406,7 +406,7 @@ def dirBust2html(self, HTMLheader, element, show=1):
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=iso-8859-1" />
-        <title> ''' + self.entryTargetName.get() + ''' extract report</title>
+        <title> ''' + self.targetName + ''' extract report</title>
     
         <link rel="stylesheet" type="text/css" href="''' + str(self.amosDir) + '''/MODULES/stylesheets/lfs.css" />
     </head>
@@ -421,7 +421,7 @@ def dirBust2html(self, HTMLheader, element, show=1):
                             </h1>
                             <h2 class="subtitle">
                                 <img src="''' + HeBiLogo + '''" width="100" height="150"></img><br>
-                                <p style="color:white;">''' + self.entryTargetName.get() + ":" + self.entryWebPort.get() + ''' extraction report</p>
+                                <p style="color:white;">''' + self.targetName + ":" + self.entryWebPort.get() + ''' extraction report</p>
                             </h2>
                         </div>
                     </div>
@@ -457,7 +457,7 @@ def dirBust2html(self, HTMLheader, element, show=1):
         
     if show == 1:
 
-        filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/HTML_report-DirBust-" + self.entryWebPort.get() + ".html"
+        filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/HTML_report-DirBust-" + self.entryWebPort.get() + ".html"
         with open(filename, "w") as file:
             file.write(html)
         file.close
@@ -465,10 +465,9 @@ def dirBust2html(self, HTMLheader, element, show=1):
 def write2Creds(self):
     credsTxtFile = '''admin/admin
     administrator/administrator
-    root/root
-    '''
+    root/root'''
 
-    filename = "/home/" + os.getlogin() + "/Documents/" + self.entryTargetName.get() + "/creds.txt"
+    filename = "/home/" + os.getlogin() + "/Documents/" + self.targetName + "/creds.txt"
     with open(filename, "w") as file:
         file.write(credsTxtFile)
     file.close 

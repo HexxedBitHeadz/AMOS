@@ -125,7 +125,7 @@ def revshell(self):
 
     # Placing window
     self.revShellBottomWindow = MODULES.functions.windowMaker(frameName=self.frameRevShell)
-    self.revShellBottomWindow.place(anchor="nw", height=295, width=410, x=475, y=300)
+    self.revShellBottomWindow.place(anchor="nw", height=260, width=325, x=525, y=300)
 
     def generate():
     
@@ -212,7 +212,8 @@ def revshell(self):
         # Function that allows copy to clip board
         MODULES.functions.statusUpdate(self, statusText="Text copied to clipboard")
         self.frameRevShell.clipboard_clear()
-        self.topLevelAmos.clipboard_append(dtxt)
+        self.frameRevShell.clipboard_append(dtxt)
+       
                     
     def printCode(revShellCode):
 
@@ -222,7 +223,7 @@ def revshell(self):
 
         # Make the copy button
         revShellButtons = MODULES.functions.buttonMaker(frameName=self.revShellBottomWindow, text="Click Me to copy!")
-        revShellButtons.configure(width=45, command=lambda: gtc(revShellCode))
+        revShellButtons.configure(width=33, command=lambda: gtc(revShellCode))
 
         # Creating the window and placing in the desired revshell code
         self.revShellBottomWindow.window_create("end", window=revShellButtons)

@@ -95,7 +95,7 @@ def tools(self):
         MODULES.write2report.webExtract2html(self, HTMLheader, res)
 
         # Changing permission to regular user from sudo, making report and creds files easier to access
-        os.chown("/home/" + self.userName + "/Documents/" + self.entryTargetName.get() + "/HTML_report-Extraction-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
+        os.chown("/home/" + self.userName + "/Documents/" + self.targetName + "/HTML_report-Extraction-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
 
         # Updating bottom window to show extraction done and where to find
         MODULES.functions.bottomWindowUpdate(window=httpWindow, updateText="Extraction done " + str(self.entryTargetIP.get()) + ":" + str(self.entryWebPort.get()) + "\n\n")
@@ -157,7 +157,7 @@ def tools(self):
             dirBustButton.configure(state="normal")
             MODULES.functions.statusUpdate(self, statusText="Finished directory buster.")
 
-            os.chown("/home/" + self.userName + "/Documents/" + self.entryTargetName.get() + "/HTML_report-DirBust-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
+            os.chown("/home/" + self.userName + "/Documents/" + self.targetName + "/HTML_report-DirBust-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
 
             self.progressBar.stop()
 

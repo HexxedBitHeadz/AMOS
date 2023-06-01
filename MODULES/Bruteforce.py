@@ -33,7 +33,7 @@ def bruteforce(self, port, service):
 
     # Making the brute button
     self.bruteButton = MODULES.functions.buttonMaker(frameName=self.frameBrute, text="brute em!")
-    self.bruteButton.place(anchor="nw", x=525, y=550)
+    self.bruteButton.place(anchor="nw", x=525, y=530)
 
     try:
         self.bruteButton.configure(command=lambda:attackCreds(self), width=10)
@@ -43,7 +43,7 @@ def bruteforce(self, port, service):
 
     # Making the creds button
     self.credsButton = MODULES.functions.buttonMaker(frameName=self.frameBrute, text="Update creds")
-    self.credsButton.place(anchor="nw", x=700, y=550)
+    self.credsButton.place(anchor="nw", x=700, y=530)
     self.credsButton.configure(command=lambda:updateCreds(self), width=10)
     self.credsButton.configure(state="normal")
     
@@ -100,11 +100,11 @@ def attackCreds(self, dicEnabled, port, service):
         MODULES.functions.statusUpdate(self, statusText= service + " Brute attack in progress...")
     
         # Attacking every eligible service with creds.txt file
-        bruteScan = nm.scan(self.TargetIP + nmapArguments + str(port))
+        bruteScan = nm.scan(self.targetIP + nmapArguments + str(port))
 
         ### try to have updateText reflect results live, instead of all at one at the end.
         try:
-            updateText += "====" + service + " on port: " + str(port) + "\n" + bruteScan["scan"][self.TargetIP]["tcp"][port]["script"][service + "-brute"] + "\n\n"
+            updateText += "====" + service + " on port: " + str(port) + "\n" + bruteScan["scan"][self.targetIP]["tcp"][port]["script"][service + "-brute"] + "\n\n"
 
         except KeyError:
             updateText += "====" + service + " on port: " + str(port) + ": No valid accounts found.\n\n"

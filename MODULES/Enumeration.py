@@ -37,8 +37,8 @@ def scriptEnumLoop(self, port, service, serviceButtons):
 
     # Begin extracting data from nmap dictionaries, put into labels on screen
     try:
-        productList = self.serviceScan["scan"][self.TargetIP]["tcp"][port]["product"]
-        versionList = self.serviceScan["scan"][self.TargetIP]["tcp"][port]["version"]
+        productList = self.serviceScan["scan"][self.targetIP]["tcp"][port]["product"]
+        versionList = self.serviceScan["scan"][self.targetIP]["tcp"][port]["version"]
 
         if productList != "":
             scriptList.extend([[str(productList)]])
@@ -59,7 +59,7 @@ def scriptEnumLoop(self, port, service, serviceButtons):
 
     try:
             
-        for scriptHeadersList, scriptDetailsList in self.serviceScan["scan"][self.TargetIP]["tcp"][port]["script"].items():
+        for scriptHeadersList, scriptDetailsList in self.serviceScan["scan"][self.targetIP]["tcp"][port]["script"].items():
                    
             if scriptHeadersList != "":
                 scriptList.extend([[str(scriptHeadersList)]])
@@ -79,7 +79,7 @@ def scriptEnumLoop(self, port, service, serviceButtons):
         pass
  
     try:
-        extraInfoList = self.serviceScan["scan"][self.TargetIP]["tcp"][port]["extrainfo"]
+        extraInfoList = self.serviceScan["scan"][self.targetIP]["tcp"][port]["extrainfo"]
 
         if extraInfoList != "":
             scriptList.extend([str(extraInfoList)])
@@ -114,7 +114,7 @@ def wrapUp(self):
     self.entryTargetName.config(state='normal')
     # self.entryTargetName.delete(0, 'end')
     self.entryTargetIP.config(state='normal')
-    # self.entryTargetIP.delete(0,'end')
+    # self.entrytargetIP.delete(0,'end')
     self.checkBoxVulners.config(state='normal')
     # self.checkBoxUDP.config(state='normal')
 

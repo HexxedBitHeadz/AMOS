@@ -31,12 +31,12 @@ def preScan(self):
     self.entryTargetIP.config(state='disabled')
 
     # Getting values from text boxes
-    self.TargetName = self.entryTargetName.get()
-    self.TargetIP = self.entryTargetIP.get()
+    self.targetName = self.entryTargetName.get()
+    self.targetIP = self.entryTargetIP.get()
 
     # Leaving TargetName blank to give it name of IP.  Thinking about x.x.x.x/24 scans
-    if self.TargetName == "":
-        self.TargetName = self.TargetIP
+    if self.targetName == "":
+        self.targetName = self.entryTargetIP.get()
     
     # Setting up treaded function
     THREADsetThreads = threading.Thread(target=setThreads, args=(self, ), daemon=True)
@@ -52,7 +52,7 @@ def setThreads(self):
     MODULES.write2report.write2Creds(self)
 
     # Displaying that the target folder has been created. 
-    MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText=self.TargetName + " created\n\n")
+    MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText=self.targetName + " created\n\n")
 
     # Begin report header
     MODULES.write2report.header2html(self)
@@ -117,8 +117,8 @@ def fullNmap(self):
 
         for port,service in self.dicAllOpenPorts.items():
 
-            serviceProduct = self.serviceScan['scan'][self.TargetIP]['tcp'][port]['product']
-            serviceVersion = self.serviceScan['scan'][self.TargetIP]['tcp'][port]['version']
+            serviceProduct = self.serviceScan['scan'][self.targetIP]['tcp'][port]['product']
+            serviceVersion = self.serviceScan['scan'][self.targetIP]['tcp'][port]['version']
 
             scanSummary.extend([[str(port), str(service), serviceProduct + " " + serviceVersion],])
            
@@ -160,7 +160,7 @@ def vulnersNmap(self):
             vulnList = []
 
             try:
-                vulnSummary = self.vulnersScan['scan'][self.TargetIP]["tcp"][port]["script"]["vulners"] + '\n'
+                vulnSummary = self.vulnersScan['scan'][self.targetIP]["tcp"][port]["script"]["vulners"] + '\n'
                 
                 # Removing empty strings
                 vulnSummary = "".join([s for s in vulnSummary.splitlines(True) if s.strip("\r\n")])
@@ -201,7 +201,7 @@ def scanUDP(self):
     # MODULES.functions.statusUpdate(self, statusText="UDP port scan in progress...")
 
     # # Running namp command
-    # #self.fullPortScan = nm.scan(self.TargetIP, arguments='-Su -T4 -Pn -p')   
+    # #self.fullPortScan = nm.scan(self.targetIP, arguments='-Su -T4 -Pn -p')   
     # MODULES.functions.statusUpdate(self, statusText="UDP port scan completed...")
 
     # # Writing the full port scan done update at bottom window.
@@ -211,8 +211,8 @@ def scanUDP(self):
 def wrapUp(self):
 
     # Changing permission to regular user from sudo, making report and creds files easier to access
-    os.chown("/home/" + self.userName + "/Documents/" + self.TargetName + "/creds.txt", self.uid, self.gid)
-    os.chown("/home/" + self.userName + "/Documents/" + self.TargetName + "/report.html", self.uid, self.gid)
+    os.chown("/home/" + self.userName + "/Documents/" + self.targetName + "/creds.txt", self.uid, self.gid)
+    os.chown("/home/" + self.userName + "/Documents/" + self.targetName + "/report.html", self.uid, self.gid)
     
     MODULES.functions.statusUpdate(self, statusText="All scans complete!")
 
@@ -221,5 +221,5 @@ def wrapUp(self):
 
     # Make the enumeration button
     self.enumButton = MODULES.functions.buttonMaker(frameName=self.frameScanner, text="Enumeration")
-    self.enumButton.place(anchor="nw", x=525, y=550)
+    self.enumButton.place(anchor="nw", x=525, y=530)
     self.enumButton.configure(command=lambda:MODULES.Enumeration.enumeration(self), width=10)
