@@ -4,17 +4,17 @@ echo "Checking distro for auto install compatibility..."
 
 function runDNFScript () {
 	sudo dnf update
-	sudo dnf install -y python3-pip python3-virtualenv python3-tkinter nmap
+	sudo dnf install -y python3-pip python3-virtualenv python3-tkinter python3-pil python3-pil.imagetk nmap
 }
 
 function runAPTScript () {
 	sudo apt update
-	sudo apt install -y python3-pip python3-virtualenv python3-tk nmap
+	sudo apt install -y python3-pip python3-virtualenv python3-tk python3-pil python3-pil.imagetk nmap
 }
 
 function runYUMScript () {
 	sudo yum update
-	sudo yum install -y python3-pip python3-virtualenv python3-tk nmap
+	sudo yum install -y python3-pip python3-virtualenv python3-tk python3-pil python3-pil.imagetk nmap
 }
 
 # Leaving OS's here for further testing.
@@ -48,4 +48,3 @@ virtualenv .
 source ./bin/activate
 sudo pip3 install python-nmap
 sudo pip3 install -r requirements.txt
-

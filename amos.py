@@ -13,12 +13,10 @@ for module in os.listdir("./MODULES"):
         exec("import MODULES." + module[:-3])
 
 topLevelAmos = Tk()
-topLevelAmos.title("Amos")
+topLevelAmos.title("Amos v1.0")
 topLevelAmos.geometry("900x600")
 topLevelAmos.configure(background="black")
 topLevelAmos.resizable(False, False)
-
-
 
 class AmosApp(Frame):
     def __init__(self, master, *pargs):
