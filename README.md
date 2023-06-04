@@ -5,6 +5,8 @@ It is not recommended to use this tool on any exam, or as a replacement for any 
 
 Due to use of match case scripting, only >= python 3.10 is supported.
 
+Install / Demo videos: https://drive.google.com/drive/folders/1Tn00ee7CddQfj0PuZQNreZh44mjv_Gne?usp=sharing
+
 ## First time installation
 ```
 git clone https://github.com/HexxedBitHeadz/AMOS && cd AMOS
