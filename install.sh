@@ -40,6 +40,8 @@ else
   echo "python3-dev"
   echo "python3-virtualenv"
   echo "python3-tkinter"
+  echo "python3-pil"
+  echo "python3-pil.imagetk"
   echo "nmap"
 
 fi
