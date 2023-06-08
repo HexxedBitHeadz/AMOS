@@ -9,31 +9,21 @@ nm = PortScanner()
 
 
 def bruteforce(self, port, service):
+    
 
     # Here in this tab, we will test and display findings for: 1. Anonymous access 2. nmap credfile.txt attack.
     var = tk.IntVar()
 
-    # Destroying and recreating bottom window as this was the only solution I could find to clearing the checkboxes in the bottom window with new scan without restarint app
-    self.scrollWindowBruteBottom.destroy()
-    self.scrollWindowBruteBottom = MODULES.functions.windowMaker(frameName=self.frameBrute)
-    self.scrollWindowBruteBottom.place(anchor="nw", height=150, width=325, x=525, y=380)
-
 
     # Creating checkboxes
-    checkboxes = MODULES.functions.checkBoxMaker(frameName=self.scrollWindowBruteBottom, text=str(port) + " - " + str(service))
+    checkboxes = MODULES.functions.checkBoxMaker(frameName=self.scrolled_textBruteBottom, text=str(port) + " - " + str(service))
     checkboxes.configure(variable=var, command=lambda:myCallback(self, var, port, service))
 
 
-    #self.scrollWindowBruteBottom.window_create("1.0", window="")
-
-
+ 
     # Adding checkboxes to bottom window
-    self.scrollWindowBruteBottom.window_create("end", window=checkboxes)
+    self.scrolled_textBruteBottom.window_create("end", window=checkboxes)
     checkboxes.pack(anchor=W)
-
-    # Making the brute button
-    self.bruteButton = MODULES.functions.buttonMaker(frameName=self.frameBrute, text="brute em!")
-    self.bruteButton.place(anchor="nw", x=525, y=530)
 
     try:
         self.bruteButton.configure(command=lambda:attackCreds(self), width=10)
@@ -42,8 +32,8 @@ def bruteforce(self, port, service):
         pass
 
     # Making the creds button
-    self.credsButton = MODULES.functions.buttonMaker(frameName=self.frameBrute, text="Update creds")
-    self.credsButton.place(anchor="nw", x=700, y=530)
+
+
     self.credsButton.configure(command=lambda:updateCreds(self), width=10)
     self.credsButton.configure(state="normal")
     
@@ -78,12 +68,12 @@ def attackCreds(self, dicEnabled, port, service):
     self.entryTargetIP.config(state='disabled')
 
     # Deleting top window text.
-    self.scrollWindowbruteTop.configure(state="normal")
-    self.scrollWindowbruteTop.delete("1.0", END)
-    self.scrollWindowbruteTop.configure(state="disabled")
+    self.scrolled_textBruteTop.configure(state="normal")
+    self.scrolled_textBruteTop.delete("1.0", END)
+    self.scrolled_textBruteTop.configure(state="disabled")
 
     # Start the progress bar
-    self.progressBar.start(15)
+    self.progress_bar.start(15)
 
     self.bruteButton.configure(state="disabled")
     self.credsButton.configure(state="disabled")
@@ -108,11 +98,11 @@ def attackCreds(self, dicEnabled, port, service):
 
         except KeyError:
             updateText += "====" + service + " on port: " + str(port) + ": No valid accounts found.\n\n"
-        MODULES.functions.topWindowUpdate(window=self.scrollWindowbruteTop, updateText=updateText)
+        MODULES.functions.topWindowUpdate(window=self.scrolled_textBruteTop, updateText=updateText)
     
     # Updating status, stopping progress bar and re-enable button
     MODULES.functions.statusUpdate(self, statusText="Brute attack finished")
-    self.progressBar.stop()
+    self.progress_bar.stop()
     self.bruteButton.configure(state="normal")
     self.credsButton.configure(state="normal")
     self.entryTargetName.config(state='normal')

@@ -78,14 +78,14 @@ def documentsFolderPathCheck(self):
     os.chdir(DocumentsFolder)
 
     # Checking for the Documents/TargetName folder.  If it does not exist, create it
-    str(os.path.exists(self.targetName))
+    str(os.path.exists(self.entryTargetName.get()))
     
-    if not os.path.exists(self.targetName):
-        os.mkdir(self.targetName)
-        os.chown(self.targetName, self.uid, self.gid)
+    if not os.path.exists(self.entryTargetName.get()):
+        os.mkdir(self.entryTargetName.get())
+        os.chown(self.entryTargetName.get(), self.uid, self.gid)
     else:
         pass
-    os.chdir(self.targetName)
+    os.chdir(self.entryTargetName.get())
 
 
 
@@ -150,10 +150,10 @@ def quickPortScan(self):
     for i in range(n):
 
         updateText = updateText + "port: " + str(quickOpenPortList[i]) + "\t" + "\t" + str(quickOpenServiceList[i]) + "\n"
-    MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText="Here are quick hits: \n\n" + updateText)
+    MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText="Here are quick hits: \n\n" + updateText)
 
     # Writing the quick scan done update at bottom window.
-    MODULES.functions.bottomWindowUpdate(window=self.scrollWindowScannerBottom, updateText="nmap quick port scan done!\n")
+    MODULES.functions.bottomWindowUpdate(window=self.scrolled_textScannerBottom, updateText="nmap quick port scan done!\n")
 
     return self.quickPortScan
 
@@ -171,7 +171,7 @@ def fullPortScan(self):
 
     # Error message in case scan goes wrong
     except KeyError:
-        MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText="Error!  No ports found...\n\nPlease check target details and try again.")
+        MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText="Error!  No ports found...\n\nPlease check target details and try again.")
 
     # Assign variable for full list of banners tied to open ports
     self.fullOpenServiceList = []

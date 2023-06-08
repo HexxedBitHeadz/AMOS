@@ -11,20 +11,20 @@ def enumeration(self):
     self.flag = 0
     
     # Deleting bottom window text.
-    MODULES.functions.bottomWindowDelete(window=self.scrollWindowScannerBottom)
+    MODULES.functions.bottomWindowDelete(window=self.scrolled_textScannerBottom)
 
     # Disabling enumeration button.
     self.enumButton.configure(state="disabled")
 
     # Start the progress bar and provide status update
-    self.progressBar.start(15)
+    self.progress_bar.start(15)
     MODULES.functions.statusUpdate(self, statusText="Enumeration scans in progress...")
 
     # Creating the buttons with service names and putting them on the screen.
     for port,service in self.dicAllOpenPorts.items():
-        serviceButtons = MODULES.functions.buttonMaker(frameName=self.scrollWindowScannerBottom, text=service)
-        self.scrollWindowScannerBottom.window_create("end", window=serviceButtons)
-        self.scrollWindowScannerBottom.insert("end", "\n")
+        serviceButtons = MODULES.functions.buttonMaker(frameName=self.scrolled_textScannerBottom, text=service)
+        self.scrolled_textScannerBottom.window_create("end", window=serviceButtons)
+        self.scrolled_textScannerBottom.insert("end", "\n")
         THREADscirptEnumLoop = threading.Thread(target=scriptEnumLoop, args=(self, port, service, serviceButtons), daemon=True)
         THREADscirptEnumLoop.start()
 
@@ -93,7 +93,7 @@ def scriptEnumLoop(self, port, service, serviceButtons):
         updateText += ""
 
     serviceButtons.configure(state="normal")
-    serviceButtons.bind("<Button-1>", lambda e:MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText=updateText))
+    serviceButtons.bind("<Button-1>", lambda e:MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText=updateText))
 
     # Writing updateText to html report.
     Header = service +  ":" + str(port)
@@ -107,15 +107,15 @@ def scriptEnumLoop(self, port, service, serviceButtons):
 
 def wrapUp(self):
     MODULES.functions.statusUpdate(self, statusText="Enumeration scans completed")
-    self.progressBar.stop()
+    self.progress_bar.stop()
 
     # Reinstate the text boxes and button.
-    self.scanButton.config(state='normal')
+    self.scan_button.config(state='normal')
     self.entryTargetName.config(state='normal')
     # self.entryTargetName.delete(0, 'end')
     self.entryTargetIP.config(state='normal')
     # self.entrytargetIP.delete(0,'end')
-    self.checkBoxVulners.config(state='normal')
+    self.checkbox.config(state='normal')
     # self.checkBoxUDP.config(state='normal')
 
     # Counter keeping track of how many bruatable services are found

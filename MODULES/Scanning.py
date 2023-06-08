@@ -14,15 +14,16 @@ def preScan(self):
     # Clearing out top and bottom window in case user clicks scan agin after enumeration.  This deletes the service buttons and re-disables the brute tab.
     try:
         # Clear scanning tab windows
-        MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText=" ")
-        MODULES.functions.bottomWindowDelete(window=self.scrollWindowScannerBottom)
+        MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText=" ")
+        MODULES.functions.bottomWindowDelete(window=self.scrolled_textScannerBottom)
         
         
         # Clear brute tab top window
         MODULES.functions.topWindowUpdate(window=self.scrollWindowbruteTop, updateText=" ")
      
         # Disabling the Brute tab until valid results are found from scanning
-        self.notebookAmos.tab(self.frameBrute, state="disabled")
+        # print("Disabling brute tab")
+        # self.notebookAmos.tab(self.frameBrute, state="disabled")
     except:
         pass
 
@@ -52,11 +53,11 @@ def setThreads(self):
     MODULES.write2report.write2Creds(self)
 
     # Displaying that the target folder has been created. 
-    MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText=self.targetName + " created\n\n")
+    MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText=self.targetName + " created\n\n")
 
     # Begin report header
     MODULES.write2report.header2html(self)
-    MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText="Running quick nmap scan...\n\n")
+    MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText="Running quick nmap scan...\n\n")
 
     # Kicking off quick and full nmap scans
     THREADquickNmap = threading.Thread(target=quickNmap, args=(self, ), daemon=True)
@@ -76,15 +77,13 @@ def quickNmap(self):
         
     except KeyError:
         # If error occurs, update top window
-        MODULES.functions.topWindowUpdate(window=self.scrollWindowScannerTop, updateText="Error!  No ports found...\n\nPlease check details and try again.")
+        MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText="Error!  No ports found...\n\nPlease check details and try again.")
         self.progressBar.stop()
         
 
 ##################### fullNmap #####################
 
 def fullNmap(self):
-
-    #time.sleep(1) # Used for testing
 
     # Updating status label.
     MODULES.functions.statusUpdate(self, statusText="Full port scan in progress...")
@@ -94,7 +93,7 @@ def fullNmap(self):
     MODULES.functions.statusUpdate(self, statusText="Full port scan completed...")
 
     # Writing the full port scan done update at bottom window.
-    MODULES.functions.bottomWindowUpdate(window=self.scrollWindowScannerBottom, updateText="nmap full port scan done!\n")
+    MODULES.functions.bottomWindowUpdate(window=self.scrolled_textScannerBottom, updateText="nmap full port scan done!\n")
 
     # Making list of all open ports found
     fullOpenPortList = ','.join(map(str, self.fullOpenPortList))
@@ -106,7 +105,7 @@ def fullNmap(self):
     MODULES.functions.statusUpdate(self, statusText="Service scan complete...")
 
     # Writing the service scan done update at bottom window.
-    MODULES.functions.bottomWindowUpdate(window=self.scrollWindowScannerBottom, updateText="nmap service scan done!\n")
+    MODULES.functions.bottomWindowUpdate(window=self.scrolled_textScannerBottom, updateText="nmap service scan done!\n")
 
     HTMLheader = "Full service scan results"
 
@@ -187,7 +186,7 @@ def vulnersNmap(self):
             
     applytoLabel()
    
-    MODULES.functions.bottomWindowUpdate(window=self.scrollWindowScannerBottom, updateText="nmap vulners scan done!\n")
+    MODULES.functions.bottomWindowUpdate(window=self.scrolled_textScannerBottom, updateText="nmap vulners scan done!\n")
     wrapUp(self)
 
 
@@ -205,7 +204,7 @@ def scanUDP(self):
     # MODULES.functions.statusUpdate(self, statusText="UDP port scan completed...")
 
     # # Writing the full port scan done update at bottom window.
-    # MODULES.functions.bottomWindowUpdate(window=self.scrollWindowScannerBottom, updateText="nmap UDP port scan done!\n")
+    # MODULES.functions.bottomWindowUpdate(window=self.scrolled_textScannerBottom, updateText="nmap UDP port scan done!\n")
 
 
 def wrapUp(self):
@@ -217,9 +216,7 @@ def wrapUp(self):
     MODULES.functions.statusUpdate(self, statusText="All scans complete!")
 
     # Stop the progress bar
-    self.progressBar.stop()
+    self.progress_bar.stop()
 
-    # Make the enumeration button
-    self.enumButton = MODULES.functions.buttonMaker(frameName=self.frameScanner, text="Enumeration")
-    self.enumButton.place(anchor="nw", x=525, y=530)
+    self.enumButton.configure(state="normal")
     self.enumButton.configure(command=lambda:MODULES.Enumeration.enumeration(self), width=10)
