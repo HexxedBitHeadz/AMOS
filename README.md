@@ -37,6 +37,9 @@ sudo python3 amos.py
 - Expand Reverse Shell tab
 - Expand Privelege Escalation tab
 
+## Whats new in v1.1.1?
+- fixed issue if target name is blank, target ip would not assign correctly.
+- fixed issue in revshell tab language selection drop down would remain on screen in other tabs.
 
 ## Whats new in v1.1?
 - Fixed the flashing issue when switching between tabs.
