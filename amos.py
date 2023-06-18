@@ -15,7 +15,7 @@ for module in os.listdir("./MODULES"):
 
 
 root = Tk()
-root.title("Amos v1.1")
+root.title("Amos v1.1.1")
 root.geometry("900x600")
 root.configure(background="black")
 root.resizable(False, False)
@@ -197,25 +197,30 @@ class Amos(Frame):
         self.labelTargetTypeSection = tk.Label(self.canvas, text="Section", background="black", foreground="#64d86b")
 
         self.variableSection = StringVar(self.canvas)
-        self.dropDownSection = OptionMenu(self.canvas, self.variableSection, "User", "Network", "System", command=lambda x:MODULES.privEsc.myCallback(self)) 
+        self.dropDownSection = OptionMenu(self.canvas, self.variableSection, "User", "Network", "System", command=lambda x:MODULES.privEsc.myCallback(self))
+
+#####################################
+
+        self.labelLanguage = MODULES.functions.labelMaker(frameName=self.canvas, text="Language:")
+        self.dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "", command=lambda x:MODULES.revshell.myCallback(self))
+        
+
+#####################################
 
 
         self.toolsWindow = MODULES.functions.windowMaker(frameName=self.canvas)
-
-
+        
         self.HTTPServer = MODULES.functions.labelMaker(frameName=self.canvas, text="HTTP Server")
-
-
+        
         self.mailServer = MODULES.functions.labelMaker(frameName=self.canvas, text="Mail Server")
-
+        
         self.FTPServer = MODULES.functions.labelMaker(frameName=self.canvas, text="FTP Server")
-
+        
         self.HTTPStartButton = MODULES.functions.buttonMaker(frameName=self.canvas, text="Start")
 
         self.HTTPStartButton.config(width=1, command=lambda:MODULES.tools.enableService(self, service="HTTP"))
-
+        
         self.HTTPStopButton = MODULES.functions.buttonMaker(frameName=self.canvas, text="Stop")
-
 
         self.HTTPStopButton.config(width=1, command=lambda:MODULES.tools.disableService(self, service="HTTP"))
         self.HTTPStopButton.config(state="disabled")
@@ -235,18 +240,7 @@ class Amos(Frame):
         self.FTPStopButton.config(width=1, command=lambda:MODULES.tools.disableService(self, service="FTP"))
         self.FTPStopButton.config(state="disabled")
 
-            
-
-
-
-
-
-        
         self.enumButton.configure(state="disabled")
-
-
-
-
 
         self.linkExtractButton.config(width=1, command=lambda:MODULES.HTTPtools.functionlinkExtract(self))
 
@@ -335,6 +329,11 @@ class Amos(Frame):
             self.dropDownOSWeb.place(anchor="nw", x=725, y=75)
             self.dropDownArch.place(anchor="nw", x=725, y=150)
             self.revShellBottomWindow.place(anchor="nw", height=260, width=325, x=525, y=300)
+
+            self.labelLanguage.place(anchor="nw", x=520, y=200)
+            self.dropDownLanguage.place(anchor="nw", x=525, y=225)
+
+
         else:
             self.revShellGenerateButton.place_forget()
             self.labelLocalDetails.place_forget()
@@ -348,6 +347,8 @@ class Amos(Frame):
             self.dropDownOSWeb.place_forget()
             self.dropDownArch.place_forget()
             self.revShellBottomWindow.place_forget()
+            self.labelLanguage.place_forget()
+            self.dropDownLanguage.place_forget()
 
         if str(self.current_frame) == "PrivEsc":
             self.privEscWindow.place(anchor="nw", height=260, width=325, x=525, y=300)

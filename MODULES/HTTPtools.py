@@ -61,7 +61,7 @@ def functionlinkExtract(self):
     MODULES.write2report.webExtract2html(self, HTMLheader, res)
 
     # Changing permission to regular user from sudo, making report and creds files easier to access
-    os.chown("/home/" + self.userName + "/Documents/" + self.entryTargetName.get() + "/HTML_report-Extraction-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
+    os.chown("/home/" + self.userName + "/Documents/" + self.targetName + "/HTML_report-Extraction-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
 
     # Updating bottom window to show extraction done and where to find
     MODULES.functions.bottomWindowUpdate(window=self.httpWindow, updateText="Extraction done " + str(self.entryTargetIP.get()) + ":" + str(self.entryWebPort.get()) + "\n\n")
@@ -70,7 +70,7 @@ def functionlinkExtract(self):
     self.entryTargetName.config(state='normal')
     self.entryTargetIP.config(state='normal')
 
-    MODULES.functions.bottomWindowUpdate(window=self.httpWindow, updateText="Results found in:\n ~/Documents/" + self.entryTargetName.get() + "/HTML_report-Extraction- " + self.entryWebPort.get() + ".html\n\n")
+    MODULES.functions.bottomWindowUpdate(window=self.httpWindow, updateText="Results found in:\n ~/Documents/" + self.targetName + "/HTML_report-Extraction- " + self.entryWebPort.get() + ".html\n\n")
 
 def check_url(full_url):
     # Function to check urls for 200 response
@@ -123,7 +123,7 @@ def functionDirBust(self, dirBustButton, httpWindow, target_url, filename):
         self.dirBustButton.configure(state="normal")
         MODULES.functions.statusUpdate(self, statusText="Finished directory buster.")
 
-        os.chown("/home/" + self.userName + "/Documents/" + self.entryTargetName.get() + "/HTML_report-DirBust-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
+        os.chown("/home/" + self.userName + "/Documents/" + self.targetName + "/HTML_report-DirBust-" + self.entryWebPort.get() + ".html", self.uid, self.gid)
 
         self.progress_bar.stop()
 

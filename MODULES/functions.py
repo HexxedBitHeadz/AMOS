@@ -78,16 +78,14 @@ def documentsFolderPathCheck(self):
     os.chdir(DocumentsFolder)
 
     # Checking for the Documents/TargetName folder.  If it does not exist, create it
-    str(os.path.exists(self.entryTargetName.get()))
+    str(os.path.exists(self.targetName))
     
-    if not os.path.exists(self.entryTargetName.get()):
-        os.mkdir(self.entryTargetName.get())
-        os.chown(self.entryTargetName.get(), self.uid, self.gid)
+    if not os.path.exists(self.targetName):
+        os.mkdir(self.targetName)
+        os.chown(self.targetName, self.uid, self.gid)
     else:
         pass
-    os.chdir(self.entryTargetName.get())
-
-
+    os.chdir(self.targetName)
 
 
 def statusUpdate(self, statusText):

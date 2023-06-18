@@ -15,27 +15,21 @@ def myCallback(self):
 
         # If Windows is selected, get Arch value, then create language drop down menu
         case 'Windows':
+
             self.dropDownArch.config(state=NORMAL)
 
             if self.variableArch.get() == "x86" or self.variableArch.get() == "x64":
-                
-                labelLanguage = MODULES.functions.labelMaker(frameName=self.canvas, text="Language:")
-                labelLanguage.place(anchor="nw", x=520, y=200)
+ 
 
-                dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "C", "C#", "nc", "PowerShell", "Python", command=lambda x:myCallback(self))
-                dropDownLanguage.place(anchor="nw", x=525, y=225)
+                self.dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "C", "C#", "nc", "PowerShell", "Python", command=lambda x:myCallback(self))
+                self.dropDownLanguage.place(anchor="nw", x=525, y=225)
 
         # If Unix is selected, get Arch value, then create language drop down menu
         case 'Unix':
             self.dropDownArch.config(state=NORMAL)
 
-            if self.variableArch.get() == "x86" or self.variableArch.get() == "x64":
-                
-                labelLanguage = MODULES.functions.labelMaker(frameName=self.canvas, text="Language:")
-                labelLanguage.place(anchor="nw", x=520, y=200)
-
-                dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "Awk", "Bash", "nc", "Perl", "Python", "Ruby", command=lambda x:myCallback(self))
-                dropDownLanguage.place(anchor="nw", x=525, y=225)
+            self.dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "Awk", "Bash", "nc", "Perl", "Python", "Ruby", command=lambda x:myCallback(self))
+            self.dropDownLanguage.place(anchor="nw", x=525, y=225)
 
 
         # If Web is selected, set Arch to blank, then disable, then create language drop down menu        
@@ -47,9 +41,6 @@ def myCallback(self):
                 pass
 
             self.dropDownArch.config(state=DISABLED)
-
-            labelLanguage = MODULES.functions.labelMaker(frameName=self.canvas, text="Language:")
-            labelLanguage.place(anchor="nw", x=520, y=200)
 
             dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "asp", "aspx", "java", "JavaScript", "jsp", "war", "NodeJS", "php", command=lambda x:myCallback(self))
             dropDownLanguage.place(anchor="nw", x=525, y=225)
