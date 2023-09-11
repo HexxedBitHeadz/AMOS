@@ -13,13 +13,11 @@ for module in os.listdir("./MODULES"):
     if module.endswith(".py"):
         exec("import MODULES." + module[:-3])
 
-
 root = Tk()
-root.title("Amos v1.1.1")
+root.title("Amos v1.1.2")
 root.geometry("900x600")
 root.configure(background="black")
 root.resizable(False, False)
-
 
 class Amos(Frame):
     def __init__(self, master, *pargs):
@@ -44,11 +42,9 @@ class Amos(Frame):
 
         # Add options to the file menu
         file_menu.add_command(label="About", command=lambda:aboutHeBi(self))
-        file_menu.add_command(label="Donate", command=lambda:donate(self))
+        file_menu.add_command(label="shop", command=lambda:shop(self))
         file_menu.add_separator()
         file_menu.add_command(label="Exit", command=exit_program)
-
-
 
         self.image = Image.open(self.amosDir + "/IMAGES/AmosBackgroundGreen.png")  # Updated image file name
         self.background_image = ImageTk.PhotoImage(self.image)
@@ -142,7 +138,6 @@ class Amos(Frame):
 
         self.revShellGenerateButton.configure(command=lambda:MODULES.revshell.generate(self))        
 
-        
         self.labelLocalDetails = MODULES.functions.labelMaker(frameName=self.canvas, text="LOCAL DETAILS")       
 
         self.labelMyIP = MODULES.functions.labelMaker(frameName=self.canvas, text="My IP:") 
@@ -158,10 +153,6 @@ class Amos(Frame):
         self.entryLocalPort = MODULES.functions.entryBoxes(frameName=self.canvas, _text_="")
 
         self.revShellBottomWindow = MODULES.functions.windowMaker(frameName=self.canvas)
-
-     
-
-
 
         # Drop down boxes
         dicInterfaces = psutil.net_if_addrs()
@@ -204,9 +195,7 @@ class Amos(Frame):
         self.labelLanguage = MODULES.functions.labelMaker(frameName=self.canvas, text="Language:")
         self.dropDownLanguage = OptionMenu(self.canvas, self.variableLanguage, "", command=lambda x:MODULES.revshell.myCallback(self))
         
-
 #####################################
-
 
         self.toolsWindow = MODULES.functions.windowMaker(frameName=self.canvas)
         
@@ -246,7 +235,6 @@ class Amos(Frame):
 
         self.dirBustButton.config(width=1, command=lambda:MODULES.HTTPtools.fileSelect(self))
         
-        
         # Greetings banner
         MODULES.functions.topWindowUpdate(window=self.scrolled_textScannerTop, updateText="Welcome to Amos!\n\nWARNING:  This tool is used for research purposes, and not intended to be used in any unauthorized way!  We do not recommend using this on exam environments to ensure authorized guidance and resources.\n\nTo get started, simply insert the target name (not required) & Target IP (required) and hit scan. Results can found in:\n\n/home/" + self.userName + "/Documents/\n\nIf no target name was provided, the IP address will be used in it's place.")
         
@@ -272,8 +260,6 @@ class Amos(Frame):
     def update_entries(self, event):
         selected_tab = self.notebookAmos.select()
         self.current_frame = self.notebookAmos.tab(self.notebookAmos.select(), "text")
-
-
 
         # If scanner is the current tab, show the ScrolledText widgets
         if str(self.current_frame) == "Scanner":
@@ -315,7 +301,6 @@ class Amos(Frame):
             self.linkExtractButton.place_forget()
             self.dirBustButton.place_forget()
 
-
         if str(self.current_frame) == "RevShell":
             self.revShellGenerateButton.place(anchor="nw", x=725, y=220, width=100, height=50)
             self.labelLocalDetails.place(anchor="nw", x=520, y=25)
@@ -332,7 +317,6 @@ class Amos(Frame):
 
             self.labelLanguage.place(anchor="nw", x=520, y=200)
             self.dropDownLanguage.place(anchor="nw", x=525, y=225)
-
 
         else:
             self.revShellGenerateButton.place_forget()
@@ -386,9 +370,6 @@ class Amos(Frame):
             self.FTPStartButton.place_forget()
             self.FTPStopButton.place_forget()
 
-
-
-
     def perform_scan(self):
 
         def validate_ip_address(ip_address):
@@ -405,8 +386,6 @@ class Amos(Frame):
             if len(input_text) <= 30:
                 return True
             return False
-
-
 
         # Example usage:
         ip_input = self.entryTargetIP.get()  # Assuming 'self' refers to the current object
@@ -441,19 +420,6 @@ class Amos(Frame):
 
         MODULES.Scanning.preScan(self)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     def _resize_image(self, event=None):
         new_width = root.winfo_width()
         new_height = root.winfo_height() - 50  # Subtract the height of the tab bar
@@ -463,9 +429,6 @@ class Amos(Frame):
             self.background_image = ImageTk.PhotoImage(resized_image)
             self.canvas.delete("background")
             self.canvas.create_image(0, 0, anchor=NW, image=self.background_image, tags="background")
-
-
-
 
 def aboutHeBi(self):
     # Disable file menu
@@ -494,82 +457,57 @@ def aboutHeBi(self):
         aboutWindow.destroy()
         self.menu_bar.entryconfig(1, state="normal")
 
-
-
-def donate(self):
+def shop(self):
 
     # Disable file menu
     self.menu_bar.entryconfig(1, state="disabled")
 
-    # Runs the donate window code
-    donationWindow = MODULES.functions.popOutWindow(frameName=None, text="Donations")
-    donationWindow.geometry("500x600")
+    # Runs the shop window code
+    shopWindow = MODULES.functions.popOutWindow(frameName=None, text="Shop")
+    shopWindow.geometry("500x600")
     
-    # QR code image
-    img_QRCode = tk.PhotoImage(file=self.amosDir + "/IMAGES/QRCode.png")
-    panel = Label(donationWindow, image=img_QRCode)
-    panel.photo = img_QRCode
-    panel.place(x=10, y=10)
-
-
     # tee 1 image
-    tee_1 = tk.PhotoImage(file=self.amosDir + "/IMAGES/tee_1.png")
-    panel = Label(donationWindow, image=tee_1)
+    tee_1 = tk.PhotoImage(file=self.amosDir + "/IMAGES/etsy.png")
+    panel = Label(shopWindow, image=tee_1)
     panel.photo = tee_1
-    panel.place(x=20, y=375)
+    panel.place(x=10, y=125)
 
-    # # tee 2 image
-    tee_2 = tk.PhotoImage(file=self.amosDir + "/IMAGES/tee_2.png")
-    panel = Label(donationWindow, image=tee_2)
-    panel.photo = tee_2
-    panel.place(x=275, y=375)
+    # Payplay shop link and button
+    shopLink = '''https://www.etsy.com/shop/HexxedBitHeadz'''
 
-    # Payplay donate link and button
-    donateLink = '''https://www.paypal.com/donate/?business=5MX6P8YU3CNBY&no_recurring=0&item_name=This+donation+goes+to+furthering+cyber+research+and+tools+provided+by+Hexxed+BitHeadz.&currency_code=USD'''
+    shopButton = MODULES.functions.buttonMaker(frameName=shopWindow, text="Copy link to clipboard")
+    shopButton.configure(command=lambda: gtc(self, shopLink))
+    shopButton.place(x=10, y=500)
 
-    donateButton = MODULES.functions.buttonMaker(frameName=donationWindow, text="Copy link to clipboard")
-    donateButton.configure(command=lambda: gtc(self, donateLink))
-    donateButton.place(x=10, y=275)
-
-    # Donate summary 
-    donateSummary = MODULES.functions.labelMaker(frameName=donationWindow, text="Your donation contributes to the research and development projects from Hexxed BitHeadz.  \n\nWith this, we keep our coffee cups full, the monitors running, and the developoment going!\n\nThank you for checking out Amos, our introductory contribution to Cyber.\n\nIn the US?  Donate $30 or more and receive a Hexxed BitHeadz tee!  We'll contact you after payment to discuss request size and name to be printed.")
-    donateSummary.place(x=275, y=10)
-    donateSummary.configure(wraplength=220, justify="left")
+    # shop summary 
+    shopSummary = MODULES.functions.labelMaker(frameName=shopWindow, text="Your support contributes to the research and development projects from Hexxed BitHeadz. With this, we keep our coffee cups full, the monitors running, and the developoment going! Thank you for checking out Amos, our introductory contribution to Cyber.\n\nCheck out our etsy shop for the swwaaaggg!")
+    shopSummary.place(x=10, y=10)
+    shopSummary.configure(wraplength=450, justify="left")
 
     def gtc(self, dtxt):
         # This code is needed to properly copy to clipboard
-        donateSummary.clipboard_clear()
-        donateSummary.clipboard_append(dtxt)
+        shopSummary.clipboard_clear()
+        shopSummary.clipboard_append(dtxt)
 
         # Copy to clipboard label confirmation
-        labelCopyUpdate=tk.Label(donationWindow, text="Link copied to clipboard!", background="black", foreground="#64d86b")
-        labelCopyUpdate.place(anchor="nw", x=10, y=325)
+        labelCopyUpdate=tk.Label(shopWindow, text="Link copied to clipboard!", background="black", foreground="#64d86b")
+        labelCopyUpdate.place(anchor="nw", x=10, y=550)
 
-
-    # When closing the donationWindow, enable the update button again
-    donationWindow.protocol("WM_DELETE_WINDOW", lambda: onclose(self, donationWindow))
+    # When closing the shopWindow, enable the update button again
+    shopWindow.protocol("WM_DELETE_WINDOW", lambda: onclose(self, shopWindow))
 
     def onclose(self, credsWindow):
-        donationWindow.destroy()
+        shopWindow.destroy()
         self.menu_bar.entryconfig(1, state="normal")
-
-
-
-
-
-
 
 def exit_program():
     if messagebox.askyesno("Exit", "Are you sure you want to exit?"):
         root.destroy()
 
-
-
 e = Amos(root)
 e.pack(fill=BOTH, expand=YES)
 
 e.current_tab = e.frameScanner
-
 
 root.after(0, e._resize_image)  # Call _resize_image after the window is displayed
 
