@@ -33,11 +33,6 @@ source ./bin/activate
 sudo python3 amos.py
 ```
 
-## Roadmap
-- Continue to improve code form "proof of concept" to better written format.
-- Expand Reverse Shell tab
-- Expand Privelege Escalation tab
-
 ## Whats new in v1.1.2?
 - replaced donations window with etsy shop window.
   see https://www.etsy.com/shop/HexxedBitHeadz
