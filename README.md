@@ -22,7 +22,7 @@ sudo python3 amos.py
 ```
 
 ## Running from virtual environment
-Amos is ready for virutal deployment, simply acivate as you would any other venv:
+Amos is ready for virtual deployment, simply acivate as you would any other venv:
 
 From the Amos folder:
 ```
