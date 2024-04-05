@@ -6,7 +6,7 @@ It is not recommended to use this tool on any exam, or as a replacement for any 
 
 Due to use of match case scripting, only >= python 3.10 is supported.
 
-Install / Demo videos: https://www.youtube.com/watch?v=TbobYbCoMgw&list=PLxBIXdHenRz3MZY5A_j__b9oMuYUtZPO1&index=2
+Install / Demo videos: https://www.youtube.com/watch?v=TbobYbCoMgw&list=PLxBIXdHenRz3MZY5A_j__b9oMuYUtZPO1&index=1
 
 ## First time installation
 ```
