@@ -9,4 +9,4 @@ pyftpdlib==1.5.7
 python-nmap==0.7.1
 requests==2.31.0
 soupsieve==2.4
-urllib3==2.6.3
+urllib3==2.7.0
